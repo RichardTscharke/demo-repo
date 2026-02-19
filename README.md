@@ -1,9 +1,10 @@
 # SEP: Computer Vision & Deep Learning
+Deep learning–based Facial Emotion Recognition featuring Grad-CAM explainability and real-time interactive inference.
 
 ## Overview
 This project is the result of the "Software Development Practical" held at the Ludwig Maximilian University of Munich (LMU) during the Winter Semester 2025/26.
 
-Under the topic *Computer Vision & Deep Learning*, students of LMU were tasked with developing, training, and evaluating a Convolutional Neural Network (CNN) from scratch for the well-known Facial Emotion Recognition (FER) problem.
+Under the topic *Computer Vision & Deep Learning*, LMU students were tasked with developing, training, and evaluating a Convolutional Neural Network (CNN) from scratch for the well-known Facial Emotion Recognition (FER) problem.
 
 The practical course was supervised by Johannes Schusterbauer and Ming Gui, PhD students at LMU.
 
@@ -13,54 +14,73 @@ The practical course was supervised by Johannes Schusterbauer and Ming Gui, PhD 
 - Leon Maibauer
 - Richard Tscharke
 
-## Preparation
+## Installation
 
-Start by 
+1. Clone the repository.
+2. Create and activate a virtual environment:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+```
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-## Review Setup
 
-If you do **not** want to train the model from scratch but instead use our pretrained model for evaluation, run `main.py`. The script will guide you through:
+## Quick Start (Pretrained Model)
 
-- CSV file generation for your own dataset
+If you do **not** want to train the model from scratch but instead use our pretrained model for inference and evaluation, run `main.py`. The script will guide you through:
+
+- CSV file generation for custom datasets
 - Grad-CAM–based explainable AI for image and/or video input
 - An interactive live demo using your webcam
 
-## Training Setup
+## Training from Scratch
 
 If you want to train your own model with custom dataset distributions and training configurations, start by downloading the following datasets:
 
-### RAF-DB
+### RAF-DB (Real-world Affective Faces Database)
 
-1. Visit the official RAF-DB website or click here(http://www.whdeng.cn/RAF/model1.html#dataset)
+1. Visit the [official RAF-DB website](http://www.whdeng.cn/RAF/model1.html#dataset)
 2. Go to the "How to get the Password" section and follow the instructions
-3. Within your received mail, open one of the Basic emotion links
+3. In the email you receive, open one of the Basic emotion links
 4. Download and unzip the "Image" and "EmoLabel" folders
 5. Place them both into a new folder and name it "RAF"
 
-### Expression in the Wild
+### ExpW (Expression in the Wild)
 
-1. Visit the official ExpW website or click here(https://mmlab.ie.cuhk.edu.hk/projects/socialrelation/index.html)
+1. Visit the [official ExpW website](https://mmlab.ie.cuhk.edu.hk/projects/socialrelation/index.html)
 2. Go to the "Downloads" section and open the ExpW link
 3. Download the "data" folder
 4. Unzip its contents by ...
 5. Rename the data folder to "ExpW"
 
-## KDEF
+### KDEF (Karolinska Directed Emotional Faces)
 
-1. Visit the official KDEF website or click here(https://kdef.se/)
-2. Go to "Download" -> "Download the original KDEF and AKDEF" and follow the instructions
-3. Within your received mail, open
-4. Download and...
+1. Visit the official [KDEF website](https://kdef.se/)
+2. Go to "Download" -> "Download the original KDEF and AKDEF" and fill out the form
+3. Press the Download button
+4. Download the original KDEF & AKDEF material
 5. Rename...
 
-Finally, place all three folders (RAF, ExpW, KDEF) into the "data" folder within our project root.
+Finally, place all three folders (RAF, ExpW, KDEF) into the "data" folder within the project root.
+Alternatively, you can manually fill the 6 emotion folders per "train", "test", and "validate" directory within the data directory with your own images.
+
+## Custom Configuration
+
+After successfully downloading and placing the three datasets, you can configure your own data splits and training metrics for custom setups:
+1. Adjust and call the `preprocess.py` script
+2. Adjust and call the `train.py` script
+3. Evaluate your own setup by reviewing performance-related graphics automatically created during evaluation within the "figures" folder
+4. Change the model path within `explain_image.py`, `explain_video.py`, and `demo.py` to your new path which can be found in the model_paths folder.
+5. Call any of these scripts for Grad-CAM-based explanations for images, videos or webcam input
+
+Please note that all important information is documented within the respective files.
 
 
-Our project includes:
-- Data Preparation & Preprocessing sripts for the RAF-DB, ExpW and KDEF datasets
-- Three versions of CNN architectures showcasing our progress over the time
-- Training & Evaluation scripts based on parameters configurable by any user
-- Live demo with integrated FER and optional Grad-CAM explanation & Facial Keypoints detection
-- Image & Video explaining scripts using Grad-CAM and optimization tools
+---
 
-This project was supervised by Johannes Schusterbauer & Ming Gui, PhD students at the LMU.
+Ludwig Maximilian University of Munich (LMU)  
+Software Development Practical — Winter Semester 2025/26
+
